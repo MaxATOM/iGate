@@ -1,0 +1,206 @@
+<!doctype html>
+<head>
+  <meta charset="utf-8">
+
+  <title>Historique iGate</title>
+  <meta name="description" content="My Parse App">
+  <meta name="viewport" content="width=device-width">
+	<link rel="stylesheet" href="style.css" type="text/css">    
+    <script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.7.2/jquery.min.js"></script>
+    <script type="text/javascript" src="http://www.parsecdn.com/js/parse-1.2.16.min.js"></script>
+</head>
+
+<body>
+
+<p id="h1id"><strong></strong>&nbsp; </p>
+<script type="text/javascript">
+<!--
+    Parse.initialize("applicationId", "javaScriptKey");
+    
+    document.getElementById("h1id").innerHTML="iGate history";
+
+    var iGateDB = Parse.Object.extend("iGateDB");
+	var BTList = Parse.Object.extend("BTList");
+
+	var query = new Parse.Query(iGateDB);
+	var mac_query = new Parse.Query(BTList);
+
+	var mac_address = new Array();
+	var mac_name = new Array();
+	
+	var ide = new Array();
+	var users = new Array();
+	var date = new Array();
+	var mode_ouverture = new Array();
+	var identifiant = new Array();
+	var adresse = new Array();
+
+    var data=[ide,users,date,mode_ouverture,identifiant,adresse];
+    var mac_data=[mac_address,mac_name];
+    
+
+  var body = document.getElementsByTagName("body")[0];
+
+
+  var br = document.createElement("br");
+  
+  var div = document.createElement("div");
+
+
+  var table = document.createElement("table");
+	
+
+	query.limit(10); 
+	query.find({
+
+  	success: function(results) {
+     
+        // On rempli les tableaux
+    	for (var i = 0; i < results.length; i++) { 
+      		var object = results[i];
+            data[0][i] = object.id;
+            data[1][i] = object.get('user');
+            data[2][i] = object.get('date');
+            data[3][i] = object.get('mode_ouverture');
+            data[4][i] = object.get('identifiant');
+            data[5][i] = object.get('adresse');
+    }
+    
+  var body = document.getElementsByTagName("body")[0];
+
+  var div     = document.createElement("div");
+
+  var table     = document.createElement("table");
+  
+  var tableau = document.createElement("tbody");
+  
+  var titles=["Id","Users","Time and date","Opening mode","Devices","Device Id"];
+
+  var rangeTitre = document.createElement("tr");
+  
+  for (var i = 0; i < titles.length; i++) {
+  
+      var celluleTitre = document.createElement("td");
+      
+      var cellText = document.createTextNode(titles[i]);
+      
+      celluleTitre.appendChild(cellText);
+      
+      rangeTitre.appendChild(celluleTitre);
+    }
+    
+  tableau.appendChild(rangeTitre);
+  
+  
+  for (var j = 0; j < data[0].length; j++) {
+  
+    var rangeData = document.createElement("tr");
+    
+    for (var i = 0; i < data.length; i++) {
+    
+      var celluleData = document.createElement("td");
+
+      var cellText = document.createTextNode(data[i][j]);
+      
+      celluleData.appendChild(cellText);
+      
+      rangeData.appendChild(celluleData);
+    }
+ 
+    tableau.appendChild(rangeData);
+  }
+  
+  table.appendChild(tableau);
+  div.appendChild(table);
+
+  body.appendChild(div);
+  
+  body.appendChild(br);
+
+
+    var delay=1000;
+    setTimeout(function(){
+
+	mac_query.limit(10); 
+	
+	mac_query.find({
+  	success: function(results) {
+     
+    	for (var i = 0; i < results.length; i++) { 
+      		var object = results[i];
+            mac_data[0][i] = object.get('address');
+            mac_data[1][i] = object.get('name');
+    }
+  var body = document.getElementsByTagName("body")[0];
+	
+	  var mac_br = document.createElement("br");
+
+	
+  var mac_div     = document.createElement("div");
+
+  var mac_table     = document.createElement("table");
+  
+  var mac_tableau = document.createElement("tbody");
+  
+  var mac_titles=["Name","MAC address"];
+  
+  var mac_rangeTitre = document.createElement("tr");
+  
+  for (var i = 0; i < mac_titles.length; i++) {
+  
+      var celluleTitre = document.createElement("td");
+      
+      var cellText = document.createTextNode(mac_titles[i]);
+      
+      celluleTitre.appendChild(cellText);
+      
+      mac_rangeTitre.appendChild(celluleTitre);
+      
+    }
+    
+      mac_tableau.appendChild(mac_rangeTitre);
+
+for (var j = 0; j < mac_data[0].length; j++) {
+  
+    var rangeData = document.createElement("tr");
+    
+    for (var i = 0; i < mac_data.length; i++) {
+    
+      var celluleData = document.createElement("td");
+
+      var cellText = document.createTextNode(mac_data[i][j]);
+      
+      celluleData.appendChild(cellText);
+      
+      rangeData.appendChild(celluleData);
+    }
+ 
+    mac_tableau.appendChild(rangeData);
+  }
+
+  mac_table.appendChild(mac_tableau);
+
+  mac_div.appendChild(mac_table);
+
+  body.appendChild(mac_div);
+  body.appendChild(mac_br);
+
+  
+  }
+  });
+
+    },delay); 
+
+  }
+});
+  //-->
+  </script> 
+  <a href="index.html">FR</a>
+  <iframe src="http://10.73.8.193:8083" width=640 height=480</iframe> 
+
+
+
+  
+  </body>
+ 
+</html>

@@ -1,0 +1,257 @@
+<!doctype html>
+<head>
+  <meta charset="utf-8">
+
+  <title>Historique iGate</title>
+  <meta name="description" content="My Parse App">
+  <meta name="viewport" content="width=device-width">
+	<link rel="stylesheet" href="style.css" type="text/css">    
+    <script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.7.2/jquery.min.js"></script>
+    <script type="text/javascript" src="http://www.parsecdn.com/js/parse-1.2.16.min.js"></script>
+</head>
+
+<body>
+
+<p id="h1id"><strong></strong>
+<p id="h2id"><strong></strong> 
+
+<p align=right><a href="english.html">En</a>    Fr</p></p>
+<script type="text/javascript">
+<!--
+    Parse.initialize("applicationId", "javaScriptKey");
+    
+    document.getElementById("h1id").innerHTML="Visiophone";
+	
+    document.getElementById("h2id").innerHTML="Historique";
+
+		
+		
+    // Connexion à la base de données
+    var iGateDB = Parse.Object.extend("iGateDB");
+	var BTList = Parse.Object.extend("BTList");
+
+    // Récupération de la base iGateDB
+	var query = new Parse.Query(iGateDB);
+	var mac_query = new Parse.Query(BTList);
+
+	var mac_address = new Array();
+	var mac_name = new Array();
+	
+	var ide = new Array();
+	var users = new Array();
+	var date = new Array();
+	var mode_ouverture = new Array();
+	var identifiant = new Array();
+	var adresse = new Array();
+	// Création des tableaux de données
+    var data=[ide,users,date,mode_ouverture,identifiant,adresse];
+    var mac_data=[mac_address,mac_name];
+    
+     // On récupère le body HTML
+  var body = document.getElementsByTagName("body")[0];
+
+  //on creer un br
+  var br = document.createElement("br");
+  
+  // Création d'un div
+  var div = document.createElement("div");
+  div.setAttribute("id", "tableau");
+
+  // Création d'une table
+  var table = document.createElement("table");
+	
+    // Création du tableau final
+	query.limit(10);
+	// On limite les résultats à 10
+	query.find({
+
+  	success: function(results) {
+     
+        // On rempli les tableaux
+    	for (var i = 0; i < results.length; i++) { 
+      		var object = results[i];
+            data[0][i] = object.id;
+            data[1][i] = object.get('user');
+            data[2][i] = object.createdAt;
+            data[3][i] = object.get('mode_ouverture');
+            data[4][i] = object.get('identifiant');
+            data[5][i] = object.get('adresse');
+    }
+    
+  // On récupère le body HTML
+  var body = document.getElementsByTagName("body")[0];
+
+  // Création d'une table
+  var table     = document.createElement("table");
+  
+  // Création d'un tableau
+  var tableau = document.createElement("tbody");
+  
+  // Création de la liste des titres
+  var titles=["Identifiant","Utilisateur","Date - Heure","Mode d'ouverture","Appareil","Identifiant appareil"];
+
+  // Création de la rangé contenant les titres
+  var rangeTitre = document.createElement("tr");
+  
+  // Boucle correspondant au nombre de titres
+  for (var i = 0; i < titles.length; i++) {
+  
+      // Création d'une cellule
+      var celluleTitre = document.createElement("td");
+      
+      // Création d'un texte correspondant au titre à l'index i
+      var cellText = document.createTextNode(titles[i]);
+      
+      // On intègre le texte à la cellule
+      celluleTitre.appendChild(cellText);
+      
+      // On intègre la cellule à notre rangé
+      rangeTitre.appendChild(celluleTitre);
+    }
+    
+  // On intègre notre rangé au tableau
+  tableau.appendChild(rangeTitre);
+  
+  
+  // Boucle correspondant aux nombres de colonnes de notre base de données
+  for (var j = 0; j < data[0].length; j++) {
+  
+    // Création d'une rangé de données
+    var rangeData = document.createElement("tr");
+    
+    // Boucle correspondant aux nombres de lignes
+    for (var i = 0; i < data.length; i++) {
+    
+      // Création d'une cellule
+      var celluleData = document.createElement("td");
+
+      // Création d'un texte correspondant à la donnée de la colonne n°i de la ligne n°j
+      var cellText = document.createTextNode(data[i][j]);
+      
+      // On intègre le texte à la cellule
+      celluleData.appendChild(cellText);
+      
+      // On intègre la cellule à notre rangé
+      rangeData.appendChild(celluleData);
+    }
+ 
+  // On intègre notre rangé au tableau
+    tableau.appendChild(rangeData);
+  }
+  
+  // On intègre notre tableau à la table
+  table.appendChild(tableau);
+  div.appendChild(table);
+
+  // On intègre notre table au body
+  body.appendChild(div);
+  
+  body.appendChild(br);
+
+ //dexieme tableau
+    var delay=1000;// on creer un delay de 1 seconde
+    setTimeout(function(){
+
+	mac_query.limit(10); // on limite a 10 resultat
+
+	mac_query.find({
+  	success: function(results) {
+     
+        // On rempli les tableaux
+    	for (var i = 0; i < results.length; i++) { 
+      		var object = results[i];
+            mac_data[0][i] = object.get('name');
+            mac_data[1][i] = object.get('address');
+    }
+   // On récupère le body HTML
+  var body = document.getElementsByTagName("body")[0];
+	
+	//on recreer un br
+	  var mac_br = document.createElement("br");
+
+	
+  // Création d'un div
+  var mac_div     = document.createElement("div");
+  mac_div.setAttribute("id", "tableau2");
+
+  // Création d'une table
+  var mac_table     = document.createElement("table");
+  
+  // Création d'un tableau
+  var mac_tableau = document.createElement("tbody");
+  
+  var mac_titles=["Nom","Adresse MAC"];
+  
+  var mac_rangeTitre = document.createElement("tr");
+  
+  for (var i = 0; i < mac_titles.length; i++) {
+  
+      // Création d'une cellule
+      var celluleTitre = document.createElement("td");
+      
+      // Création d'un texte correspondant au titre à l'index i
+      var cellText = document.createTextNode(mac_titles[i]);
+      
+      // On intègre le texte à la cellule
+      celluleTitre.appendChild(cellText);
+      
+      // On intègre la cellule à notre rangé
+      mac_rangeTitre.appendChild(celluleTitre);
+      
+    }
+    
+      mac_tableau.appendChild(mac_rangeTitre);
+
+for (var j = 0; j < mac_data[0].length; j++) {
+  
+    // Création d'une rangé de données
+    var rangeData = document.createElement("tr");
+    
+    // Boucle correspondant aux nombres de lignes
+    for (var i = 0; i < mac_data.length; i++) {
+    
+      // Création d'une cellule
+      var celluleData = document.createElement("td");
+
+      // Création d'un texte correspondant à la donnée de la colonne n°i de la ligne n°j
+      var cellText = document.createTextNode(mac_data[i][j]);
+      
+      // On intègre le texte à la cellule
+      celluleData.appendChild(cellText);
+      
+      // On intègre la cellule à notre rangé
+      rangeData.appendChild(celluleData);
+    }
+ 
+  // On intègre notre rangé au tableau
+    mac_tableau.appendChild(rangeData);
+  }
+
+  mac_table.appendChild(mac_tableau);
+
+  mac_div.appendChild(mac_table);
+
+  // On intègre notre table au body
+  body.appendChild(mac_div);
+  body.appendChild(mac_br);
+
+  
+  }
+  });
+
+    //your code to be executed after 1 seconds
+    },delay); 
+
+  }
+});
+  //-->
+  </script>
+
+  <div id="camera" align=left>
+  <iframe src="http://10.73.8.189:8083" width=640 height=480> </iframe>
+  </div>
+  
+
+</body>
+ 
+</html>
