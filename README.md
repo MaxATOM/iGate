@@ -6,7 +6,6 @@ Once installed on your couch, watch what is happening around your home with outd
 
 ![iGate demo](https://cloud.githubusercontent.com/assets/3249418/6460474/c744fd02-c197-11e4-989e-ee9387f30418.png)
 
-
 Preview
 -----------------
 The system is distributed across multiple platforms: a tablet application, smartphone application, a website and an opening manager, located near the gate.
@@ -22,6 +21,20 @@ The system is distributed across multiple platforms: a tablet application, smart
 <em>Three people have worked on the project.</em>
 
 ![iGate mind map](https://cloud.githubusercontent.com/assets/3249418/6460767/6feaa40a-c19a-11e4-86b9-c8056e8a2d3d.jpg)
+
+Set-up the system
+----------------
+
+In order to the system to be fully functional, you need to proceed in this way:
+* Prepare a Raspberry Pi with NOOBs or Raspbian (I have not tested other images, but it should work), install Python and several libraries: [PyBluez](https://code.google.com/p/pybluez/ "PyBluez"), [ParsePy](https://github.com/dgrtwo/ParsePy "ParsePy") and [Motion](https://medium.com/@Cvrsor/how-to-make-a-diy-home-alarm-system-with-a-raspberry-pi-and-a-webcam-2d5a2d61da3d "Motion")
+* Prepare the Parse database: create two bases (BTList and iGateDB) with the following attributes: "address", "name" for BTList and  "user", "mode\_ouverture", "identifiant", "adresse", "date" (type: date) for iGateDB
+* If you want here is the link of the two bases pre-filled with records examples : [iGateDB](https://s3.amazonaws.com/export.parse.com/3653415a-3370-450b-a1d8-f4783f4f569b_1425400504_export.zip?AWSAccessKeyId=AKIAIOZ4MOVEOQZ2326Q&Expires=1428078904&Signature=ShEq7kWFOtpk2a7ProWWOXsZTJ4%3D "iGateDB"), and [BTList](https://s3.amazonaws.com/export.parse.com/3653415a-3370-450b-a1d8-f4783f4f569b_1425400488_export.zip?AWSAccessKeyId=AKIAIOZ4MOVEOQZ2326Q&Expires=1428078889&Signature=Gko1SC5oPTvU7tdm38toitsGX%2Bk%3D "BTList")
+* Enter Parse ID on server.py (Application and REST Key)
+* Start the server: ./igateserver.sh start
+* Start Motion
+* Install at least one mobile application on a device, and the one (enter also Parse Key) on an iPad.
+* Enter Parse ID on html files
+* You're done !
 
 Development
 ---------------
