@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>IDESourceControlProjectFavoriteDictionaryKey</key>
+	<false/>
+	<key>IDESourceControlProjectIdentifier</key>
+	<string>2702C350-0409-452D-93B8-012DD078520D</string>
+	<key>IDESourceControlProjectName</key>
+	<string>iGate</string>
+	<key>IDESourceControlProjectOriginsDictionary</key>
+	<dict>
+		<key>76F7B9E28E4E29C0F843EFD40FF8164B32ADA79F</key>
+		<string>https://github.com/MaxATOM/iGate.git</string>
+	</dict>
+	<key>IDESourceControlProjectPath</key>
+	<string>Application iOS/iGate.xcodeproj</string>
+	<key>IDESourceControlProjectRelativeInstallPathDictionary</key>
+	<dict>
+		<key>76F7B9E28E4E29C0F843EFD40FF8164B32ADA79F</key>
+		<string>../../..</string>
+	</dict>
+	<key>IDESourceControlProjectURL</key>
+	<string>https://github.com/MaxATOM/iGate.git</string>
+	<key>IDESourceControlProjectVersion</key>
+	<integer>111</integer>
+	<key>IDESourceControlProjectWCCIdentifier</key>
+	<string>76F7B9E28E4E29C0F843EFD40FF8164B32ADA79F</string>
+	<key>IDESourceControlProjectWCConfigurations</key>
+	<array>
+		<dict>
+			<key>IDESourceControlRepositoryExtensionIdentifierKey</key>
+			<string>public.vcs.git</string>
+			<key>IDESourceControlWCCIdentifierKey</key>
+			<string>76F7B9E28E4E29C0F843EFD40FF8164B32ADA79F</string>
+			<key>IDESourceControlWCCName</key>
+			<string>iGate</string>
+		</dict>
+	</array>
+</dict>
+</plist>

@@ -8,6 +8,7 @@ Once installed on your couch, watch what is happening around your home with outd
 
 Preview
 -----------------
+
 The system is distributed across multiple platforms: a tablet application, smartphone application, a website and an opening manager, located near the gate.
 
 ![iGate simple diagram](https://cloud.githubusercontent.com/assets/3249418/6460566/7aec3e24-c198-11e4-8905-91cb7e34780d.png)
